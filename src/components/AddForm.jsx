@@ -30,8 +30,11 @@ const AddForm = () => {
       return;
     } else {
       setIsModelOpen(true);
+      toast.success("Split created");
     }
   };
+
+  const splittedAmount = (amount/members.length).toFixed(2);
 
   return (
     <>
@@ -54,7 +57,7 @@ const AddForm = () => {
         {!isModelOpen ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <form
-              className="block mx-auto w-[400px] bg-gray-200 p-5 shadow-xl"
+              className="block mx-auto w-[420px] bg-gray-200 p-5 shadow-xl"
               onSubmit={(e) => {
                 e.preventDefault();
               }}
@@ -93,7 +96,7 @@ const AddForm = () => {
                 className="px-4 py-2 w-[80%] block mx-auto mb-5 mt-1 border-1 border-blue-500 shadow-xl focus:outline-none"
               />
               <label className="ms-10">Group Members:</label>
-              <div className="flex justify-center items-center my-b  mt-1">
+              <div className="flex justify-center items-center mt-1">
                 <input
                   type="text"
                   placeholder="Add Group Members"
@@ -101,7 +104,7 @@ const AddForm = () => {
                   onChange={(e) => {
                     setNewMember(e.target.value);
                   }}
-                  className="px-4 py-2 me-2 border-1 border-blue-500 shadow-xl focus:outline-none"
+                  className="px-4 py-2 me-2 border-1 w-[61%] border-blue-500 shadow-xl focus:outline-none"
                 />
                 <button
                   type="button"
@@ -140,17 +143,20 @@ const AddForm = () => {
             setIsModelOpen(false);
           }}
         >
-          <div>
-            <h2 className="bg-white p-1">OVERVIEW</h2>
-            <hr />
-            <div className="flex justify-around">
+          <div className="py-8 px-5">
+            <h2 className="bg-white p-2 font-bold text-2xl text-gray-500">OVERVIEW</h2>
+            <hr className="pb-5"/>
+            <h3 className="font-bold text-blue-800 py-3 text-xl">{userName}'s Split</h3>
+            <div className="flex justify-between">
               <div>
-                <h3>This event cost the group: </h3>
-                <h3>You have to pay: </h3>
-                <h3>Amount cost per person:</h3>
+                <h3 className="py-2">This event cost the group: </h3>
+                <h3 className="py-2">You have to pay: </h3>
+                <h3 className="py-2">Amount cost per person:</h3>
               </div>
               <div>
-                <p>8976757</p>
+                <p className="py-2 font-medium">₹{amount}</p>
+                <p className="py-2 font-medium">₹{splittedAmount}</p>
+                <p className="py-2 font-medium">₹{splittedAmount}</p>
               </div>
             </div>
           </div>
